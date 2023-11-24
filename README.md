@@ -21,7 +21,7 @@ $` \text{NewValue}(x, y) = \frac{1}{9} \sum_{i=-1}^{1} \sum_{j=-1}^{1} \text{Ori
 
 Here, $`( \text{OriginalValue}(x, y)`$ represents the color value of the pixel at coordinates (x, y) in the original image, and $` \text{NewValue}(x, y)`$ is the updated value after applying the mean blur.
 
-## Applications:
+## Applications
 1. **Noise Reduction:**
    Mean blur is often used to mitigate noise in images, especially in low-light conditions or high ISO settings in photography. The averaging of pixel values helps to smooth out random variations.
 2. **Preprocessing for Edge Detection:**
@@ -31,11 +31,11 @@ Here, $`( \text{OriginalValue}(x, y)`$ represents the color value of the pixel a
 4. **Privacy Protection:**
    In privacy-sensitive applications, mean blur can be applied to anonymize or obscure certain regions of an image, such as faces or license plates.
 
-## Challenges and Considerations:
+## Challenges and Considerations
 While mean blur is a simple and computationally efficient algorithm, it has its limitations. One major drawback is the loss of fine details and edges in the image. The blurring effect can lead to a lack of sharpness, making it unsuitable for applications where preserving intricate details is crucial.
 Moreover, mean blur is sensitive to outliers and extreme values in the neighborhood, which can result in undesired artifacts, especially in the presence of salt-and-pepper noise.
 
-## Conclusion:
+## Conclusion
 The mean blur algorithm is a foundational tool in the realm of image processing. Its simplicity, coupled with its effectiveness in reducing noise and smoothing images, makes it a go-to choice in various applications. Understanding the mathematical basis of the mean blur operation provides insights into its functioning and aids in making informed decisions when applying this algorithm in different contexts.
 As technology continues to advance, more sophisticated blurring techniques are being developed, but the mean blur algorithm remains a valuable and widely used tool in the toolkit of image processing professionals and enthusiasts alike.
 
