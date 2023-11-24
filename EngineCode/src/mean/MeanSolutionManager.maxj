@@ -1,0 +1,38 @@
+/**
+ * Document: MaxCompiler Training (maxcompiler-training.pdf)
+ * Chapter: 2
+ * Exercise Solution: 1
+ * Summary:
+ * 	 Manager for mean blur of image. All IO is between the CPU and the DFE.
+ */
+package mean;
+
+import com.maxeler.maxcompiler.v2.build.EngineParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager.IOType;
+
+public class MeanSolutionManager {
+
+	public static void main(String[] args) {
+		EngineParameters params = new EngineParameters(args);
+		Manager manager = new Manager(params);
+		Kernel kernel = new MeanSolutionKernel(manager.makeKernelParameters());
+		manager.setKernel(kernel);
+		manager.setIO(IOType.ALL_CPU);
+		manager.addInterface(modeDefault());
+		manager.build();
+	}
+
+	static EngineInterface modeDefault() {
+		EngineInterface m = new EngineInterface();
+		InterfaceParam size = m.addParam("size", CPUTypes.INT32);
+		m.setTicks("MeanSolutionKernel", size);
+		m.setStream("inImage", CPUTypes.INT32, size * CPUTypes.INT32.sizeInBytes());
+		m.setStream("outImage", CPUTypes.INT32, size * CPUTypes.INT32.sizeInBytes());
+		return m;
+	}
+}

@@ -1,0 +1,53 @@
+/**
+ * Document: MaxCompiler Training (maxcompiler-training.pdf)
+ * Chapter: 2
+ * Exercise Solution: 1
+ * Summary:
+ * 	 Kernel that performs a 3x3 mean blur of an image.
+ */
+package mean;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+
+class MeanSolutionKernel extends Kernel {
+
+    private static final int NEIGHBORHOOD_SIZE = 3;
+    private static final int MEAN_DIVISOR = NEIGHBORHOOD_SIZE * NEIGHBORHOOD_SIZE;
+
+    protected MeanSolutionKernel(KernelParameters parameters) {
+        super(parameters);
+        int height = 256;
+        int width = 256;
+
+        DFEVar inImage = io.input("inImage", dfeInt(32));
+
+        DFEVar result = calculateMeanBlur(inImage, height, width);
+
+        CounterChain counterChain = control.count.makeCounterChainMoreBits();
+        DFEVar y = counterChain.addCounter(height, 1);
+        DFEVar x = counterChain.addCounter(width, 1);
+
+        result = applyEdgeConditions(result, x, y, width, height);
+
+        io.output("outImage", result, result.getType());
+    }
+
+    private DFEVar calculateMeanBlur(DFEVar inImage, int height, int width) {
+        DFEVar sum = constant.var(0);
+
+        for (int x = -NEIGHBORHOOD_SIZE / 2; x <= NEIGHBORHOOD_SIZE / 2; x++) {
+            for (int y = -NEIGHBORHOOD_SIZE / 2; y <= NEIGHBORHOOD_SIZE / 2; y++) {
+                sum = sum + stream.offset(inImage, y * width + x);
+            }
+        }
+        return sum / MEAN_DIVISOR;
+    }
+
+    private DFEVar applyEdgeConditions(DFEVar result, DFEVar x, DFEVar y, int width, int height) {
+        DFEVar isInsideImage = (x > 0) & (x < width - 1) & (y > 0) & (y < height - 1);
+        return isInsideImage ? result : constant.var(0);
+    }
+}
