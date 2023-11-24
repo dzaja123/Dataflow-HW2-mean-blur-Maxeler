@@ -39,17 +39,6 @@ Moreover, mean blur is sensitive to outliers and extreme values in the neighborh
 The mean blur algorithm is a foundational tool in the realm of image processing. Its simplicity, coupled with its effectiveness in reducing noise and smoothing images, makes it a go-to choice in various applications. Understanding the mathematical basis of the mean blur operation provides insights into its functioning and aids in making informed decisions when applying this algorithm in different contexts.
 As technology continues to advance, more sophisticated blurring techniques are being developed, but the mean blur algorithm remains a valuable and widely used tool in the toolkit of image processing professionals and enthusiasts alike.
 
-## Applications
-The mean blur algorithm finds diverse applications across different domains:
-### 1. Image Smoothing
-Mean blur is commonly used for image smoothing, reducing noise, and providing a visually more pleasing appearance. This is beneficial in various fields, including medical imaging and surveillance.
-### 2. Preprocessing for Object Recognition
-In computer vision, mean blur serves as a preprocessing step for object recognition. It helps emphasize essential features while reducing the impact of irrelevant details, leading to improved accuracy.
-### 3. Edge Detection
-While primarily a smoothing operation, mean blur indirectly influences edge detection. By softening edges and suppressing minor details, the algorithm contributes to highlighting more prominent structures.
-### 4. Noise Reduction in Satellite Imagery
-In satellite imagery, mean blur aids in reducing noise and enhancing the clarity of significant geographical features. This is valuable for tasks such as land cover classification and environmental monitoring.
-
 ## Mean Blur in Maxeller
 
 ```java
