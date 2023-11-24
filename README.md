@@ -121,5 +121,5 @@ This graph encapsulates the pipeline of arithmetic units and the orchestrated da
 
 ### Clone the repository to your local machine.
     ```bash
-    git clone 
+    git clone https://github.com/dzaja123/Dataflow-HW2-mean-blur-Maxeler.git
     ```
